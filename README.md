@@ -3,6 +3,8 @@ hrpsys-base Cookbook
 
 This cookbook will install hrpsys-base simulator frontend.
 
+[![Build Status](http://ci.devrt.tk/job/chef-hrpsys-base/badge/icon)](http://ci.devrt.tk/job/chef-hrpsys-base/)
+
 Requirements
 ------------
 
