@@ -17,16 +17,16 @@
 # limitations under the License.
 #
 
-include_recipe "build-essential"
-include_recipe "python"
-include_recipe "subversion::client"
-include_recipe "omniorb"
-include_recipe "collada-dom"
-include_recipe "openrtm-aist"
-include_recipe "openhrp"
+include_recipe 'build-essential'
+include_recipe 'python'
+include_recipe 'subversion::client'
+include_recipe 'omniorb'
+include_recipe 'collada-dom'
+include_recipe 'openrtm-aist'
+include_recipe 'openhrp'
 
 pkgs = value_for_platform_family(
-  ["debian"] => %w{libqhull-dev libirrlicht-dev libsdl1.2-dev freeglut3-dev libxmu-dev libglew-dev libopencv-dev libgtest-dev libboost-python-dev ipython python-tk}
+  ['debian'] => %w(libqhull-dev libirrlicht-dev libsdl1.2-dev freeglut3-dev libxmu-dev libglew-dev libopencv-dev libgtest-dev libboost-python-dev ipython python-tk)
 )
 
 pkgs.each do |pkg|
@@ -35,7 +35,7 @@ pkgs.each do |pkg|
   end
 end
 
-bash "compile_hrpsys-base" do
+bash 'compile_hrpsys-base' do
   cwd "#{Chef::Config['file_cache_path']}/hrpsys-base"
   code <<-EOH
       ln -s /usr/include/opencv2 /usr/include/opencv
@@ -48,10 +48,10 @@ bash "compile_hrpsys-base" do
   action :nothing
 end
 
-subversion "hrpsys-base" do
-  repository "http://hrpsys-base.googlecode.com/svn/trunk/"
-  revision "HEAD"
+subversion 'hrpsys-base' do
+  repository 'http://hrpsys-base.googlecode.com/svn/trunk/'
+  revision 'HEAD'
   destination "#{Chef::Config[:file_cache_path]}/hrpsys-base"
   action :sync
-  notifies :run, "bash[compile_hrpsys-base]", :immediately
+  notifies :run, 'bash[compile_hrpsys-base]', :immediately
 end
