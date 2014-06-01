@@ -38,6 +38,8 @@ end
 bash 'compile_hrpsys-base' do
   cwd "#{Chef::Config['file_cache_path']}/hrpsys-base"
   code <<-EOH
+      sed -i "s/boost_system-mt/boost_system/g" lib/util/CMakeLists.txt
+      sed -i "s/boost_thread-mt/boost_thread/g" lib/util/CMakeLists.txt
       ln -s /usr/include/opencv2 /usr/include/opencv
       ln -s /usr/include/opencv2/opencv.hpp /usr/include/opencv/cv.h
       ln -s /usr/include/opencv2/highgui/highgui.hpp /usr/include/opencv/highgui.h
