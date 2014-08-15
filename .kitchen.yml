@@ -1,6 +1,9 @@
 ---
 driver:
   name: docker
+driver_config:
+  binary: docker.io
+  use_sudo: false
 
 provisioner:
   name: chef_solo
